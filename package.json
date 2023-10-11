@@ -1,0 +1,30 @@
+{
+    "name": "first-electron-app",
+    "version": "1.0.0",
+    "description": "my first electron app",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "description": "a Dairy notebook for everyone"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Azeiynali/diary_DesktopApp.git"
+    },
+    "keywords": [
+        "desktop_app"
+    ],
+    "author": "Ali.z",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Azeiynali/diary_DesktopApp/issues"
+    },
+    "homepage": "https://github.com/Azeiynali/diary_DesktopApp#readme",
+    "devDependencies": {
+        "electron": "^26.3.0"
+    },
+    "dependencies": {
+        "electron-cookies": "^1.1.0",
+        "sqlite3": "^5.1.6"
+    }
+}
