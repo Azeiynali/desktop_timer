@@ -2,12 +2,106 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>Dairy</title>
+        <title>clock</title>
+
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <h1>Hello World!</h1>
-        We are using Node.js <span id="node-version"></span>, Chromium
-        <span id="chrome-version"></span>, and Electron
-        <span id="electron-version"></span>.
+        <div class="clock-container">
+            <div class="clock-col">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    id="HA"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"
+                    />
+                    <script xmlns="" />
+                </svg>
+                <p class="clock-hours clock-timer"></p>
+                <p class="clock-label">Hours</p>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    id="HR"
+                    viewBox="0 0 24 24"
+                    class="down"
+                >
+                    <path
+                        d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"
+                    />
+                    <script xmlns="" />
+                </svg>
+            </div>
+            <div class="clock-col">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    id="MA"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"
+                    />
+                    <script xmlns="" />
+                </svg>
+                <p class="clock-minutes clock-timer"></p>
+                <p class="clock-label">Minutes</p>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    id="MR"
+                    viewBox="0 0 24 24"
+                    class="down"
+                >
+                    <path
+                        d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"
+                    />
+                    <script xmlns="" />
+                </svg>
+            </div>
+            <div class="clock-col">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    id="SA"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"
+                    />
+                    <script xmlns="" />
+                </svg>
+                <p class="clock-seconds clock-timer"></p>
+                <p class="clock-label">Seconds</p>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    id="SR"
+                    viewBox="0 0 24 24"
+                    class="down"
+                >
+                    <path
+                        d="M12.354 8.854l5.792 5.792a.5.5 0 01-.353.854H6.207a.5.5 0 01-.353-.854l5.792-5.792a.5.5 0 01.708 0z"
+                    />
+                    <script xmlns="" />
+                </svg>
+            </div>
+        </div>
+        <div class="button" id="start">Start</div>
+        <div class="button" id="pause">Pause | Play</div>
+        <div class="button" id="reset">Reset</div>
+        <div class="alarm"  id="ok">OK</div>
+        <div class="theame" id="theame">🌙</div>
+
+        <script src="script.js"></script>
     </body>
 </html>

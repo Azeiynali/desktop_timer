@@ -1,20 +1,21 @@
-// preload.js
-
-// All the Node.js APIs are available in the preload process.
-// It has the same sandbox as a Chrome extension.
-
 document.addEventListener("DOMContentLoaded", () => {
-    const changeTheame = function () {
-        if (document.body.getAttribute("class") === "dark") {
-            document.body.setAttribute("class", "light");
-        } else {
-            document.body.setAttribute("class", "dark");
-        }
-    };
+    const clock = document.querySelector(".clock-container");
+    const pause = document.querySelector("#pause");
+    const reset = document.querySelector("#reset");
+    const ok = document.querySelector("#ok");
 
-    document.querySelector("#chnage_theame").addEventListener("click", () => {
-        changeTheame();
-    });
-
-    document.querySelector("#if").innerText = "Runned";
+    clock.style.transform = "scale(.8)";
+    reset.style.display = "none";
+    pause.style.display = "none";
+    ok.style.display = "none";
+    
+    document.documentElement.style.setProperty("--timer-hours", "'" + 0 + "'");
+    document.documentElement.style.setProperty(
+        "--timer-minutes",
+        "'" + 0 + "'"
+    );
+    document.documentElement.style.setProperty(
+        "--timer-seconds",
+        "'" + 0 + "'"
+    );
 });
