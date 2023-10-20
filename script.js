@@ -15,6 +15,7 @@ const get_var = window.getComputedStyle(document.documentElement);
 // * audio
 const audio = new Audio("D:\\Ali\\projects\\clock_app\\tick_tock.mp3");
 const alarm = new Audio("D:\\Ali\\projects\\clock_app\\alarm.wav");
+alarm.loop = true;
 
 var paused = false;
 var timer = null;
@@ -95,7 +96,7 @@ const start = function () {
     var minutes = parseInt(eval(get_var.getPropertyValue("--timer-minutes")));
     var seconds = parseInt(eval(get_var.getPropertyValue("--timer-seconds")));
     timer = setInterval(function () {
-        if (hours == 0 && minutes == 0 && seconds < 11 && !audio_played) {
+        if (hours == 0 && minutes == 0 && seconds < 12 && !audio_played) {
             audio_played = true;
             audio.play();
         }
@@ -188,12 +189,12 @@ ok.addEventListener("click", () => {
 });
 theame.addEventListener("click", () => {
     if (get_var.getPropertyValue("--main-color") == "black") {
-        document.documentElement.style.setProperty('--main-color', 'white');
-        document.documentElement.style.setProperty('--m-main-color', 'black');
+        document.documentElement.style.setProperty("--main-color", "white");
+        document.documentElement.style.setProperty("--m-main-color", "black");
         theame.innerHTML = "🌙";
     } else {
-        document.documentElement.style.setProperty('--main-color', 'black');
-        document.documentElement.style.setProperty('--m-main-color', 'white');
+        document.documentElement.style.setProperty("--main-color", "black");
+        document.documentElement.style.setProperty("--m-main-color", "white");
         theame.innerHTML = "☀️";
     }
 });

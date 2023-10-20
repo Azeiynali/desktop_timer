@@ -31,21 +31,26 @@ div {
 
 .clock-day:before {
     content: var(--timer-day);
+    transition: all 0.2s;
     color: var(--m-main-color);
 }
 .clock-hours:before {
     content: var(--timer-hours);
     color: var(--m-main-color);
+    transition: all 0.2s;
 }
 .clock-minutes:before {
     content: var(--timer-minutes);
+    transition: all 0.2s;
     color: var(--m-main-color);
 }
 .clock-seconds:before {
+    transition: all 0.2s;
     content: var(--timer-seconds);
     color: var(--m-main-color);
 }
 .clock-col i {
+    transition: all 0.2s;
     color: var(--m-main-color);
     font-size: 3rem;
 }
