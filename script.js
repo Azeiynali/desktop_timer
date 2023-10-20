@@ -14,7 +14,7 @@ const get_var = window.getComputedStyle(document.documentElement);
 
 // * audio
 const audio = new Audio("D:\\Ali\\projects\\clock_app\\tick_tock.mp3");
-const alarm = new Audio("D:\\Ali\\projects\\clock_app\\alarm.wav");
+const alarm = new Audio("D:\\Ali\\projects\\clock_app\\alarm.mp3");
 alarm.loop = true;
 
 var paused = false;
@@ -143,6 +143,8 @@ pause.addEventListener("click", () => {
         start();
         reset.style.display = "none";
     } else {
+        audio_played = false
+        audio.pause()
         clearInterval(timer);
         paused = true;
         reset.style.display = "inline-block";
