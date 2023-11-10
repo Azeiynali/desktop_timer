@@ -117,6 +117,10 @@ const start = function () {
         );
         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
+        if (!hours && !minutes && seconds < 11){
+            audio.play()
+        }
+
         document.documentElement.style.setProperty(
             "--timer-hours",
             "'" + hours + "'"
@@ -130,8 +134,8 @@ const start = function () {
             "'" + seconds + "'"
         );
 
-        if (timeRemaining <= 0) {
-            clearInterval(timerInterval);
+        if (!hours && !minutes && !seconds){
+            clearInterval(timer);
             endOfTimer();
         }
     }, 1000);
