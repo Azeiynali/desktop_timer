@@ -15,7 +15,7 @@ npm start
 - 1.0.6 - No installation file
 
 ## install for windows
-Download and run the latest version
+Download and run the latest version<br>
 password of installer: Azeiynali
 
 ## install for linux
