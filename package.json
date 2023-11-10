@@ -4,7 +4,8 @@
     "description": "my first electron app",
     "main": "main.js",
     "scripts": {
-        "start": "electron main.js"
+        "start": "electron main.js",
+        "package": "electron-packager . clock --platform=win32 --arch=x64 --out=dist --overwrite --icon=icon.ico"
     },
     "repository": {
         "type": "git",

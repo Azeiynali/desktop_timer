@@ -13,7 +13,7 @@ const secondRemove = document.querySelector("#SR");
 const get_var = window.getComputedStyle(document.documentElement);
 
 // * audio
-const audio = new Audio("D:\\Ali\\projects\\clock_app\\tick_tock.mp3");
+const audio = new Audio("D:\\Ali\\projects\\clock_app\\tick_tack.mp3");
 const alarm = new Audio("D:\\Ali\\projects\\clock_app\\alarm.mp3");
 alarm.loop = true;
 
