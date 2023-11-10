@@ -4,8 +4,7 @@
     "description": "my first electron app",
     "main": "main.js",
     "scripts": {
-        "start": "electron .",
-        "description": "a Dairy notebook for everyone"
+        "start": "electron main.js"
     },
     "repository": {
         "type": "git",
@@ -21,7 +20,9 @@
     },
     "homepage": "https://github.com/Azeiynali/diary_DesktopApp#readme",
     "devDependencies": {
-        "electron": "^26.3.0"
+        "@electron-forge/cli": "^6.4.2",
+        "electron": "^27.0.4",
+        "electron-packager": "^17.1.2"
     },
     "dependencies": {
         "electron-cookies": "^1.1.0",

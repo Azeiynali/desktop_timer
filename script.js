@@ -1,6 +1,6 @@
 const start_button = document.querySelector("#start");
 const pause = document.querySelector("#pause");
-const theame = document.querySelector("#theame");
+const theme = document.querySelector("#theme");
 const ok = document.querySelector("#ok");
 const reset = document.querySelector("#reset");
 const clock = document.querySelector(".clock-container");
@@ -92,35 +92,30 @@ const start = function () {
     secondRemove.style.display = "none";
     clock.style.transform = "";
 
-    var hours = parseInt(eval(get_var.getPropertyValue("--timer-hours")));
-    var minutes = parseInt(eval(get_var.getPropertyValue("--timer-minutes")));
-    var seconds = parseInt(eval(get_var.getPropertyValue("--timer-seconds")));
-    timer = setInterval(function () {
-        if (hours == 0 && minutes == 0 && seconds < 12 && !audio_played) {
-            audio_played = true;
-            audio.play();
-        }
-        if (seconds == 0) {
-            if (minutes == 0) {
-                if (hours == 0) {
-                    clearInterval(timer);
-                    endOfTimer();
-                } else {
-                    hours = hours - 1;
-                    minutes = 58;
-                    seconds = 60;
-                }
-            } else {
-                minutes = minutes - 1;
-                seconds = 60;
-            }
-        }
-        if (seconds == 0 && hours == 0 && minutes == 0) {
-            clearInterval(timer);
-            endOfTimer();
-        } else {
-            seconds--;
-        }
+    let targetTime = new Date();
+    targetTime.setHours(
+        targetTime.getHours() +
+            parseInt(eval(get_var.getPropertyValue("--timer-hours")))
+    );
+    targetTime.setMinutes(
+        targetTime.getMinutes() +
+            parseInt(eval(get_var.getPropertyValue("--timer-minutes")))
+    );
+    targetTime.setSeconds(
+        targetTime.getSeconds() +
+            parseInt(eval(get_var.getPropertyValue("--timer-seconds"))) +
+            1
+    );
+
+    timer = setInterval(() => {
+        const now = new Date();
+        const timeRemaining = Math.max(targetTime - now, 0);
+
+        const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+        const minutes = Math.floor(
+            (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
         document.documentElement.style.setProperty(
             "--timer-hours",
@@ -134,17 +129,24 @@ const start = function () {
             "--timer-seconds",
             "'" + seconds + "'"
         );
+
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            endOfTimer();
+        }
     }, 1000);
 };
 
 start_button.addEventListener("click", start);
 pause.addEventListener("click", () => {
     if (paused) {
+        seconds =
+            parseInt(eval(get_var.getPropertyValue("--timer-seconds"))) + 1;
         start();
         reset.style.display = "none";
     } else {
-        audio_played = false
-        audio.pause()
+        audio_played = false;
+        audio.pause();
         clearInterval(timer);
         paused = true;
         reset.style.display = "inline-block";
@@ -189,14 +191,14 @@ ok.addEventListener("click", () => {
     alarm.pause();
     ok.style.display = "none";
 });
-theame.addEventListener("click", () => {
+theme.addEventListener("click", () => {
     if (get_var.getPropertyValue("--main-color") == "black") {
         document.documentElement.style.setProperty("--main-color", "white");
         document.documentElement.style.setProperty("--m-main-color", "black");
-        theame.innerHTML = "🌙";
+        theme.innerHTML = "🌙";
     } else {
         document.documentElement.style.setProperty("--main-color", "black");
         document.documentElement.style.setProperty("--m-main-color", "white");
-        theame.innerHTML = "☀️";
+        theme.innerHTML = "☀️";
     }
 });
