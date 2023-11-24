@@ -17,7 +17,7 @@ const get_var = window.getComputedStyle(document.documentElement);
 
 // * audio
 const audio = new Audio("D:\\Ali\\projects\\clock_app\\tick_tack.mp3");
-const alarm = new Audio("D:\\Ali\\projects\\clock_app\\alarm_1.mp3");
+var alarm = "";
 
 alarm.loop = true;
 
@@ -28,15 +28,33 @@ var timer = null;
 function closeWindow() {
     window.electronBridge.sendToMain("close-window");
 }
+function setAlarm(value) {
+    window.electronBridge.sendToMain("setKey", { key: "alarm", value: value });
+}
 document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        let alarm_num = document.querySelector("#alarm").innerHTML;
+        alarm = new Audio(
+            "D:\\Ali\\projects\\clock_app\\alarm_" + alarm_num + ".mp3"
+        );
+    }, 1000);
     document.querySelectorAll(".alarm_change").forEach(function (element) {
         element.addEventListener("click", (ev) => {
             if (this_alarm != "") {
                 this_alarm.pause();
             }
             if (element.innerHTML == "▶️") {
-                document.querySelector(".selected").classList.remove("selected");
+                document
+                    .querySelector(".selected")
+                    .classList.remove("selected");
                 element.classList.add("selected");
+                alarm_number = element.getAttribute("data-alarm");
+                setAlarm(alarm_number);
+                alarm = new Audio(
+                    "D:\\Ali\\projects\\clock_app\\alarm_" +
+                        alarm_number +
+                        ".mp3"
+                );
                 document
                     .querySelectorAll(".alarm_change")
                     .forEach(function (element_2) {
@@ -128,7 +146,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const start = function () {
-    alarm.pause();
+    if (alarm) {
+        alarm.pause();
+    }
     paused = false;
     let audio_played = false;
     pause.style.display = "inline-block";
