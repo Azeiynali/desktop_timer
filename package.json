@@ -23,10 +23,10 @@
     "devDependencies": {
         "@electron-forge/cli": "^6.4.2",
         "electron": "^27.0.4",
-        "electron-packager": "^17.1.2"
+        "electron-packager": "^17.1.2",
+        "electron-store": "^8.1.0"
     },
     "dependencies": {
-        "electron-cookies": "^1.1.0",
-        "sqlite3": "^5.1.6"
+        "electron-titlebar-windows": "^3.0.0"
     }
 }

@@ -1,3 +1,11 @@
+const { contextBridge, ipcRenderer } = require("electron");
+
+contextBridge.exposeInMainWorld("electronBridge", {
+    sendToMain: (channel, data) => {
+        ipcRenderer.send(channel, data);
+    },
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const clock = document.querySelector(".clock-container");
     const pause = document.querySelector("#pause");
@@ -8,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     reset.style.display = "none";
     pause.style.display = "none";
     ok.style.display = "none";
-    
+
     document.documentElement.style.setProperty("--timer-hours", "'" + 0 + "'");
     document.documentElement.style.setProperty(
         "--timer-minutes",
