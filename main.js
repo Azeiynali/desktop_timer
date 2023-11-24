@@ -37,9 +37,9 @@ const createWindow = () => {
     });
 };
 
-// app.on("browser-window-created", (e, window) => {
-//     window.setMenu(null);
-// });
+app.on("browser-window-created", (e, window) => {
+    window.setMenu(null);
+});
 
 app.whenReady().then(() => {
     createWindow();
