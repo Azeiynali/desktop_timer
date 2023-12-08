@@ -11,7 +11,7 @@ npm start
 ```
 
 ## versions
-[CHNAGELOG](./CHANGELOG.md)
+[CHANGELOG](./CHANGELOG.md)
 
 ## install for windows
 Download and run the latest version<br>
