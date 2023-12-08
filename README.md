@@ -11,8 +11,7 @@ npm start
 ```
 
 ## versions
-- 1.2.3 - current version
-- 1.0.6 - No installation file
+[CHNAGELOG](./CHANGELOG.md)
 
 ## install for windows
 Download and run the latest version<br>
