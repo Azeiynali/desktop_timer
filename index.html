@@ -10,29 +10,8 @@
     <body>
         <span id="alarm" style="display: none"></span>
         <div id="nav">
-            <img src="./icon.ico" alt="logo" />
-            Clock
-            <svg
-                id="close-button"
-                onclick="closeWindow()"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 511.88 511.88"
-                width="30px"
-                height="30px"
-                id="close"
-            >
-                <g data-name="Layer 2">
-                    <path
-                        d="M255.94,511.88A255.94,255.94,0,0,1,75,75L85.57,85.57,75,75a255.94,255.94,0,0,1,362,362A254.26,254.26,0,0,1,255.94,511.88Zm0-481.88A225.94,225.94,0,0,0,96.18,415.71,225.94,225.94,0,0,0,415.71,96.18,224.47,224.47,0,0,0,255.94,30Z"
-                    ></path>
-                    <path
-                        d="M170.76,356.13a15,15,0,0,1-10.61-25.61L330.52,160.15a15,15,0,1,1,21.21,21.21L181.36,351.73A15,15,0,0,1,170.76,356.13Z"
-                    ></path>
-                    <path
-                        d="M341.13,356.13a15,15,0,0,1-10.61-4.4L160.15,181.36a15,15,0,1,1,21.21-21.21L351.73,330.52a15,15,0,0,1-10.6,25.61Z"
-                    ></path>
-                </g>
-            </svg>
+            <div onclick="closeWindow()" id="close" class="TopButton"></div>
+            <div onclick="minWindow()" id="minimize" class="TopButton"></div>
         </div>
 
         <div class="clock-container">
@@ -133,10 +112,18 @@
         <div class="settings" id="settingsBox">
             <p>alarm</p>
             <div class="select_container">
-                <div data-alarm="1" class="box alarm_change selected">▶️</div>
-                <div data-alarm="2" class="box alarm_change">▶️</div>
-                <div data-alarm="3" class="box alarm_change">▶️</div>
-                <div data-alarm="4" class="box alarm_change">▶️</div>
+                <div data-alarm="1" class="box alarm_change selected">
+                    <img data-state="pause" src='./play.svg' />
+                </div>
+                <div data-alarm='2' class='box alarm_change'>
+                    <img data-state="pause" src='./play.svg' />
+                </div>
+                <div data-alarm='3' class='box alarm_change'>
+                    <img data-state="pause" src='./play.svg' />
+                </div>
+                <div data-alarm='4' class='box alarm_change'>
+                    <img data-state="pause" src='./play.svg' />
+                </div>
             </div>
         </div>
         <div class="settingsB" id="settings">⚙️</div>

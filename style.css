@@ -228,11 +228,13 @@ div {
     cursor: pointer;
     transition: all 0.3s ease-out;
     width: 50px;
-    padding-top: 7px;
     height: 50px;
 }
 .box:hover {
     transform: scale(1.1);
+}
+.box img{
+    width: 30px;
 }
 .settings .close {
     width: 30px;
@@ -265,9 +267,8 @@ div {
 }
 #nav {
     -webkit-app-region: drag;
-    height: 40px;
-    background-color: white;
-    color: white;
+    height: 20px;
+    background-color: #ffffff;
     width: 99vw;
     display: flex;
     align-items: center;
@@ -275,23 +276,26 @@ div {
     padding: 0 15px;
     color: #333;
     text-align: center;
-    gap: 20px;
+    gap: 5px;
     position: fixed;
     top: 0;
     left: 0;
     user-select: none;
 }
-#nav img {
-    width: 35px;
-    border-radius: 100px;
-}
-#close-button {
+.TopButton {
     -webkit-app-region: no-drag;
     cursor: pointer;
-    margin-left: 72vw;
-    float: right;
     transition: all .3s;
+    width: 15px;
+    height: 15px;
+    border-radius: 100px;
 }
-#close-button:hover{
-    fill: #ff4f4f;
+.TopButton:hover {
+    opacity: 0.8;
+}
+#close{
+    background-color: #ff2c1d;
+}
+#minimize{
+    background-color: #fffb1d;
 }

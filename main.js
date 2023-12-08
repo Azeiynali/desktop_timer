@@ -23,6 +23,9 @@ const createWindow = () => {
     ipcMain.on("close-window", (event) => {
         mainWindow.close();
     });
+    ipcMain.on("min-window", (event) => {
+        mainWindow.minimize();
+    });
     ipcMain.on("setKey", (event, data) => {
         store.set(data.key, data.value);
 
@@ -37,9 +40,9 @@ const createWindow = () => {
     });
 };
 
-app.on("browser-window-created", (e, window) => {
-    window.setMenu(null);
-});
+// app.on("browser-window-created", (e, window) => {
+//     window.setMenu(null);
+// });
 
 app.whenReady().then(() => {
     createWindow();

@@ -16,7 +16,7 @@ const secondRemove = document.querySelector("#SR");
 const get_var = window.getComputedStyle(document.documentElement);
 
 // * audio
-const audio = new Audio("D:\\Ali\\projects\\clock_app\\tick_tack.mp3");
+const audio = new Audio(".\\tick_tack.mp3");
 var alarm = "";
 
 alarm.loop = true;
@@ -28,50 +28,50 @@ var timer = null;
 function closeWindow() {
     window.electronBridge.sendToMain("close-window");
 }
+function minWindow() {
+    window.electronBridge.sendToMain("min-window");
+}
 function setAlarm(value) {
     window.electronBridge.sendToMain("setKey", { key: "alarm", value: value });
 }
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         let alarm_num = document.querySelector("#alarm").innerHTML;
-        alarm = new Audio(
-            "D:\\Ali\\projects\\clock_app\\alarm_" + alarm_num + ".mp3"
-        );
+        if (alarm_num) {
+            alarm = new Audio(".\\alarm_" + alarm_num + ".mp3");
+        } else {
+            alarm = new Audio(".\\alarm_1.mp3");
+        }
     }, 1000);
     document.querySelectorAll(".alarm_change").forEach(function (element) {
         element.addEventListener("click", (ev) => {
-            if (this_alarm != "") {
+            if (this_alarm) {
                 this_alarm.pause();
             }
-            if (element.innerHTML == "▶️") {
+            console.log(element.querySelector("img").src)
+            if ((element.querySelector("img").getAttribute("data-state") == "pause")) {
+                element.querySelector("img").setAttribute("data-state", "play")
                 document
                     .querySelector(".selected")
                     .classList.remove("selected");
                 element.classList.add("selected");
                 alarm_number = element.getAttribute("data-alarm");
                 setAlarm(alarm_number);
-                alarm = new Audio(
-                    "D:\\Ali\\projects\\clock_app\\alarm_" +
-                        alarm_number +
-                        ".mp3"
-                );
+                alarm = new Audio(".\\alarm_" + alarm_number + ".mp3");
                 document
                     .querySelectorAll(".alarm_change")
                     .forEach(function (element_2) {
-                        element_2.innerHTML = "▶️";
+                        element_2.innerHTML = "<img src='.\\play.svg' />";
                     });
                 alarm.pause();
                 ok.style.display = "none";
-                this_alarm = new Audio(
-                    "D:\\Ali\\projects\\clock_app\\alarm_" +
-                        ev.target.getAttribute("data-alarm") +
-                        ".mp3"
-                );
+                this_alarm = new Audio(".\\alarm_" + alarm_number + ".mp3");
                 this_alarm.loop = true;
-                element.innerHTML = "⏸️";
+                element.innerHTML = "<img src='.\\pause.svg' />";
                 this_alarm.play();
             } else {
-                element.innerHTML = "▶️";
+                element.querySelector("img").setAttribute("data-state", "pause")
+                element.querySelector("img").src = ".\\play.svg"
                 this_alarm.pause();
             }
         });
