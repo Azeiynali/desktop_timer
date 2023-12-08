@@ -45,12 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
     document.querySelectorAll(".alarm_change").forEach(function (element) {
         element.addEventListener("click", (ev) => {
-            if (this_alarm) {
+            if (this_alarm != "") {
                 this_alarm.pause();
             }
-            console.log(element.querySelector("img").src)
-            if ((element.querySelector("img").getAttribute("data-state") == "pause")) {
-                element.querySelector("img").setAttribute("data-state", "play")
+            if (element.querySelector("img").getAttribute("data-state") == null){
+                element.querySelector("img").setAttribute("data-state", "pause");
+            }
+            if (
+                element.querySelector("img").getAttribute("data-state") ==
+                "pause"
+            ) {
                 document
                     .querySelector(".selected")
                     .classList.remove("selected");
@@ -69,9 +73,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 this_alarm.loop = true;
                 element.innerHTML = "<img src='.\\pause.svg' />";
                 this_alarm.play();
+                element.querySelector("img").setAttribute("data-state", "play");
             } else {
-                element.querySelector("img").setAttribute("data-state", "pause")
-                element.querySelector("img").src = ".\\play.svg"
+                element
+                    .querySelector("img")
+                    .setAttribute("data-state", "pause");
+                element.querySelector("img").src = ".\\play.svg";
                 this_alarm.pause();
             }
         });
@@ -79,7 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (event) => {
         if (
             !event.target.closest("#settings") &&
-            !event.target.closest("#settingsBox")
+            !event.target.closest("#settingsBox") &&
+            !event.target.getAttribute("data-state")
         ) {
             settings_box.style.bottom = "";
             gray.style.display = "none";
