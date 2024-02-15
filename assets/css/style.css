@@ -5,11 +5,13 @@
         inset 0 -15px 15px rgba(255, 255, 255, 0.05),
         0 15px 15px rgba(0, 0, 0, 0.3);
     --main-color: white;
-    --m-main-color: black;
-    --primary-color: #00b4d8;
+    --m-main-color: #111111;
+    --color: #ff8635;
+    --_color: #ffaf79;
+    --background: linear-gradient(45deg, #1870ed 0, #f18f88 100%);
 }
 body {
-    background: linear-gradient(45deg, #1870ed 0, #f18f88 100%);
+    background: var(--background);
     font-family: "Montserrat", "sans-serif";
     height: 100vh;
     display: flex;
@@ -221,7 +223,7 @@ div {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--primary-color);
+    background-color: var(--color);
     color: var(--m-main-color);
     font-size: 2rem;
     box-sizing: border-box;
@@ -263,7 +265,7 @@ div {
     left: 0;
 }
 .box.selected {
-    border: #5784c7 3px solid;
+    border: var(--_color) 3px solid;
 }
 #nav {
     -webkit-app-region: drag;
@@ -298,4 +300,25 @@ div {
 }
 #minimize{
     background-color: #fffb1d;
+}
+.music_player{
+    width: 50px;
+    height: 50px;
+    background-color: var(--main-color);
+    border-radius: 100%;
+    font-size: 2rem;
+    display: flex;
+    padding-top: 7px;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 10px;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+    top: 50px;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+.music_player:hover {
+    transform: scale(0.9);
 }

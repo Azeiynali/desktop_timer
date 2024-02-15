@@ -14,12 +14,14 @@ const minuteRemove = document.querySelector("#MR");
 const secondAdd = document.querySelector("#SA");
 const secondRemove = document.querySelector("#SR");
 const get_var = window.getComputedStyle(document.documentElement);
+const music_player_btn = document.querySelector('.music_player')
 
 // * audio
-const audio = new Audio(".\\tick_tack.mp3");
+const audio = new Audio("./assets/sounds/tick_tack.mp3");
 var alarm = "";
 
 alarm.loop = true;
+audio.loop = true;
 
 var paused = false;
 var this_alarm = "";
@@ -38,18 +40,30 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         let alarm_num = document.querySelector("#alarm").innerHTML;
         if (alarm_num) {
-            alarm = new Audio(".\\alarm_" + alarm_num + ".mp3");
+            alarm = new Audio("./assets/sounds/alarm_" + alarm_num + ".mp3");
         } else {
-            alarm = new Audio(".\\alarm_1.mp3");
+            alarm = new Audio("./assets/sounds/alarm_1.mp3");
         }
+        el = document.querySelector('div[data-alarm="' + alarm_num + '"]');
+        el.classList.add("selected");
     }, 1000);
+    music_player_btn.addEventListener('click', () => {
+        window.electronBridge.sendToMain("music-player");
+    })
     document.querySelectorAll(".alarm_change").forEach(function (element) {
         element.addEventListener("click", (ev) => {
             if (this_alarm != "") {
                 this_alarm.pause();
             }
-            if (element.querySelector("img").getAttribute("data-state") == null){
-                element.querySelector("img").setAttribute("data-state", "pause");
+            if (alarm != "") {
+                alarm.pause();
+            }
+            if (
+                element.querySelector("img").getAttribute("data-state") == null
+            ) {
+                element
+                    .querySelector("img")
+                    .setAttribute("data-state", "pause");
             }
             if (
                 element.querySelector("img").getAttribute("data-state") ==
@@ -61,24 +75,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 element.classList.add("selected");
                 alarm_number = element.getAttribute("data-alarm");
                 setAlarm(alarm_number);
-                alarm = new Audio(".\\alarm_" + alarm_number + ".mp3");
+                alarm = new Audio("./assets/sounds/alarm_" + alarm_number + ".mp3");
                 document
                     .querySelectorAll(".alarm_change")
                     .forEach(function (element_2) {
-                        element_2.innerHTML = "<img src='.\\play.svg' />";
+                        element_2.innerHTML = "<img src='./assets/images/play.svg' />";
                     });
                 alarm.pause();
                 ok.style.display = "none";
-                this_alarm = new Audio(".\\alarm_" + alarm_number + ".mp3");
+                this_alarm = new Audio("./assets/sounds/alarm_" + alarm_number + ".mp3");
                 this_alarm.loop = true;
-                element.innerHTML = "<img src='.\\pause.svg' />";
+                element.innerHTML = "<img src='./assets/images/pause.svg' />";
                 this_alarm.play();
                 element.querySelector("img").setAttribute("data-state", "play");
             } else {
                 element
                     .querySelector("img")
                     .setAttribute("data-state", "pause");
-                element.querySelector("img").src = ".\\play.svg";
+                element.querySelector("img").src = "./assets/images/play.svg";
                 this_alarm.pause();
             }
         });
@@ -104,6 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "--timer-hours",
                 "'" + _ + "'"
             );
+        } else if (_ == 100) {
+            document.documentElement.style.setProperty("--timer-hours", "'0'");
         }
     });
     hoursRemove.addEventListener("click", () => {
@@ -113,6 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 "--timer-hours",
                 "'" + _ + "'"
             );
+        } else if (_ == -1) {
+            document.documentElement.style.setProperty("--timer-hours", "'99'");
         }
     });
     minuteAdd.addEventListener("click", () => {
@@ -121,6 +139,11 @@ document.addEventListener("DOMContentLoaded", () => {
             document.documentElement.style.setProperty(
                 "--timer-minutes",
                 "'" + _ + "'"
+            );
+        } else if (_ == 60) {
+            document.documentElement.style.setProperty(
+                "--timer-minutes",
+                "'0'"
             );
         }
     });
@@ -131,6 +154,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 "--timer-minutes",
                 "'" + _ + "'"
             );
+        } else if (_ == -1) {
+            document.documentElement.style.setProperty(
+                "--timer-minutes",
+                "'59'"
+            );
         }
     });
     secondAdd.addEventListener("click", () => {
@@ -140,6 +168,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 "--timer-seconds",
                 "'" + _ + "'"
             );
+        } else if (_ == 60) {
+            document.documentElement.style.setProperty(
+                "--timer-seconds",
+                "'0'"
+            );
         }
     });
     secondRemove.addEventListener("click", () => {
@@ -148,6 +181,11 @@ document.addEventListener("DOMContentLoaded", () => {
             document.documentElement.style.setProperty(
                 "--timer-seconds",
                 "'" + _ + "'"
+            );
+        } else if (_ == -1) {
+            document.documentElement.style.setProperty(
+                "--timer-seconds",
+                "'59'"
             );
         }
     });

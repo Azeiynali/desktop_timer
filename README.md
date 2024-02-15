@@ -1,8 +1,8 @@
 ﻿# clock Desktop App
 
-![picture 1](./pictures/1.png)
-![picture 1](./pictures/2.png)
-![picture 1](./pictures/3.png)
+![picture 1](assets/images/1.png)
+![picture 1](assets/images/2.png)
+![picture 1](assets/images/3.png)
 
 ## Setup
 ``` powershell
