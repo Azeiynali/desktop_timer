@@ -1,4 +1,7 @@
-# 2.3 - current version
+# 2.8 - current version
+- music player added
+
+# 2.3
 - Top Nav changed
 - path issues resolved
 - icons changed
